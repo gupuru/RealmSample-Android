@@ -1,6 +1,7 @@
 
 # [Realm](https://realm.io/jp/ "Realm")の基本
 
+AndroidのRealmのサンプルと基本的な使い方ガイド
 
 ## インストール方法
 
