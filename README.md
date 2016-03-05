@@ -99,7 +99,7 @@ RealmObjectで使える型は、こんな感じ。
 
  アノテーションは、以下のものが使える。
 
- - @PrimaryKey
+- @PrimaryKey
  > これを指定するとupdate時に楽になるので、できるだけ指定する。
 
 - @Required
@@ -116,33 +116,34 @@ RealmObjectで使える型は、こんな感じ。
 基本的には、こういう風に書く。
 
 ```java
-      Realm realm = Realm.getInstance(this);
+Realm realm = Realm.getInstance(this);
 
-      realm.beginTransaction();
-      Pokemon pokemon = realm.createObject(Pokemon.class);
-      pokemon.setHeight(0.4f);
-      pokemon.setName("ピカチュウ");
-      pokemon.setType("でんき");
-      pokemon.setWeight(6.0f);
-      realm.commitTransaction();
+realm.beginTransaction();
+Pokemon pokemon = realm.createObject(Pokemon.class);
+pokemon.setHeight(0.4f);
+pokemon.setName("ピカチュウ");
+pokemon.setType("でんき");
+pokemon.setWeight(6.0f);
+realm.commitTransaction();
 
-      realm.close();
+realm.close();
 ```
 
 トランザクションを使った書き方もできる。
 
 ```java
-      realm.executeTransaction(new Realm.Transaction() {
-               @Override
-               public void execute(Realm realm) {
-                   Pokemon pokemon = realm.createObject(Pokemon.class);
-                   pokemon.setHeight(0.4f);
-                   pokemon.setName("ピカチュウ");
-                   pokemon.setType("でんき");
-                   pokemon.setWeight(6.0f);
-               }
-           });
-      realm.close();
+realm.executeTransaction(new Realm.Transaction() {
+    @Override
+    public void execute(Realm realm) {
+        Pokemon pokemon = realm.createObject(Pokemon.class);
+        pokemon.setHeight(0.4f);
+        pokemon.setName("ピカチュウ");
+        pokemon.setType("でんき");
+        pokemon.setWeight(6.0f);
+    }
+});
+
+realm.close();
 ```
 
 **重要なのが、必ず最後にcloseすること。**            
